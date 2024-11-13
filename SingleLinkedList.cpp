@@ -3,7 +3,7 @@ using namespace std;
 struct LinkedList{
     int data;
     LinkedList *next;
-    LinkedList *prev;
+    // LinkedList *prev;
 };
 
  void display(LinkedList *head)
@@ -152,9 +152,6 @@ void deleteAt(LinkedList *&head, int position) {
     if (position == 1) {
         LinkedList *temp = head;
         head = head->next;
-        if (head != nullptr) {
-            head->prev = nullptr;
-        }
         delete temp;
     } else {
         int pos = 1;
@@ -170,39 +167,44 @@ void deleteAt(LinkedList *&head, int position) {
         }
 
         LinkedList *temp = current->next;
-        if (temp->next != nullptr) {
-            temp->next->prev = current;
-        }
+        // temp->next->prev = current;
         current->next = temp->next;
 
         delete temp;
     }
 }
 void reverse(LinkedList *head) {
-    if (head == nullptr) {
-        cout << "The list is empty" << endl;
-        return;
-    }
+//     if (head == nullptr) {
+//         cout << "The list is empty" << endl;
+//         return;
+//     }
 
-    LinkedList *current = head;
+//     LinkedList *current = head;
 
-    // Move to the end of the list
-    while (current->next != nullptr) {
-        current = current->next;
-    }
+//     // Move to the end of the list
+//     while (current->next != nullptr) {
+//         current = current->next;
+//     }
 
-    // Print the list in reverse
-    cout << "[ ";
-    while (current != nullptr) {
-        cout << current->data << " ";
-        current = current->prev;
-    }
-    cout << "]" << endl;
+//     // Print the list in reverse
+//     cout << "[ ";
+//     while (current != nullptr) {
+//         cout << current->data << " ";
+//         current = current->prev;
+//     }
+//     cout << "]" << endl;
 }
 
-void search(LinkedList *head,int target)
+bool search(LinkedList *head,int target)
 {
-
+    LinkedList *current=head;
+    while(current!=nullptr)
+    {
+        if(current->data==target)
+        {return true;}
+        current=current->next;
+    }
+    return false;
 }
 void menu(LinkedList *&head);
 void insertMenu(LinkedList *&head);

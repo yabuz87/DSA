@@ -1,0 +1,2 @@
+system("CLS");
+        insertionMenu(head);
