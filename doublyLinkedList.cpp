@@ -384,17 +384,5 @@ int main()
     LinkedList *head;
     head=nullptr;
       menu(head);
-    // insertLast(head,76);
-    // insertLast(head,6);
-    // insertLast(head,0);
-    // insertLast(head,8);
-    // deleteAt(head,4);
-    // reverse(head);
-    //insertAt(head,44,6);
-    // deleteFirst(head);
-    // deleteLast(head);
-
-    // display(head);
-
     return 0;
 }
