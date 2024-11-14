@@ -43,7 +43,6 @@ struct LinkedList{
 if(head==nullptr)
 {
     head=newNode;
-    // head->prev=nullptr;
 }
 else{
     while(current->next!=nullptr)
@@ -51,13 +50,12 @@ else{
         current=current->next;
     }
     current->next=newNode;
-    // newNode->prev=current;
 }
 
  }
 
 
- void insertAt(LinkedList *&head,int val,int position)
+ void insertAt(LinkedList *&head,int position,int val)
  {
 
     LinkedList *newNode=new LinkedList();
@@ -67,15 +65,15 @@ else{
     if(head==nullptr)
     {
         head=newNode;
+        newNode->next=nullptr;
+        return;
     }
 
  if(position==1)
     {
         newNode->next=head;
-        // head->prev=newNode;
         head=newNode;
-        // head->prev=nullptr;
-
+       return;
     }
    else{
 
@@ -87,14 +85,12 @@ else{
     }
     if(current==nullptr)
     {
-        cout<<"out of bound";
+        cout<<"out of bound\n\n";
         return;
     }
     if(current->next==nullptr)
     {
             current->next=newNode;
-            //newNode->prev=current;
-           // newNode->next=nullptr;
     }
 
 
@@ -102,9 +98,7 @@ else{
     LinkedList *temp=current;
    
     newNode->next=current->next;
-    // current->next->prev=newNode;
     temp->next=newNode;
-    // newNode->prev=temp;
    }
    }
  }
@@ -114,7 +108,6 @@ void deleteFirst(LinkedList *&head) {
     } else {
         LinkedList *temp = head;
         head = head->next;
-        // head->prev = nullptr;
         delete temp;
     }
 }
@@ -173,26 +166,21 @@ void deleteAt(LinkedList *&head, int position) {
         delete temp;
     }
 }
-void reverse(LinkedList *head) {
-//     if (head == nullptr) {
-//         cout << "The list is empty" << endl;
-//         return;
-//     }
 
-//     LinkedList *current = head;
+void reverseDisplayList(LinkedList *&head)
+   { 
+    cout<<"[";
+    {
+        if(head==nullptr)
+            return;
 
-//     // Move to the end of the list
-//     while (current->next != nullptr) {
-//         current = current->next;
-//     }
+        reverseDisplayList(head->next);
 
-//     // Print the list in reverse
-//     cout << "[ ";
-//     while (current != nullptr) {
-//         cout << current->data << " ";
-//         current = current->prev;
-//     }
-//     cout << "]" << endl;
+        cout<<" "<<head->data<<" ";
+
+
+    }  
+    cout << "]" << endl;
 }
 
 bool search(LinkedList *head,int target)
@@ -313,7 +301,7 @@ void deleteMenu(LinkedList *&head){
             system("CLS");
             deleteLast(head);
             display(head);
-            cout<<"0.Exit\n\n1.Back to menu\n\n";
+            cout<<"\n\n0.Exit\n\n1.Back to menu\n\n";
             cin>>Op;
             if(Op==1)
             {
@@ -327,12 +315,16 @@ void deleteMenu(LinkedList *&head){
             system("CLS");
             deleteAt(head, pos);
             display(head);
-            cout<<"0.Exit\n\n1.Back to menu\n\n";
+            
+            cout<<"\n\n0.Exit\n\n1.Back to menu\n\n";
+            cin>>Op;
             if(Op==1)
             {
                 system("CLS");
                 deleteMenu(head);
             }
+            else 
+            return;
             break;
         case 0:
             system("CLS");
@@ -342,19 +334,21 @@ void deleteMenu(LinkedList *&head){
             cout <<"Invalid option.Please try again." << endl;
             display(head);
             deleteMenu(head);
-            cout<<"0.Exit\n\n1.Back to menu\n\n";
-
+            cout<<"\n\n0.Exit\n\n1.Back to menu\n\n";
+            cin>>Op;
             if(Op==1)
             {
                 system("CLS");
                 deleteMenu(head);
             }
+            else 
+            return;
     }
 }
 void menu(LinkedList *&head)
 {
     cout<<"This is a menu for doubly LinkedList\n\n 1.inserting\n\n 2.Delete\n\n 3.Searching\n\n4.Reverse List\n\n";
-    int option;
+    int option,Op;
     cin>>option;
     switch(option)
     {
@@ -371,11 +365,29 @@ void menu(LinkedList *&head)
         int target;
         cin>>target;
         system("CLS");
-        search(head,target);
+        cout<<search(head,target);
+        cout<<"\n\n0.Exit\n\n1.Back to menu\n\n";
+            cin>>Op;
+            if(Op==1)
+            {
+                system("CLS");
+                deleteMenu(head);
+            }
+            else 
+            return;
         break;
         case 4:
         system("CLS");
-        reverse(head);
+        reverseDisplayList(head);
+        cout<<"\n\n0.Exit\n\n1.Back to menu\n\n";
+            cin>>Op;
+            if(Op==1)
+            {
+                system("CLS");
+                deleteMenu(head);
+            }
+            else 
+            return;
         break;
 
     }

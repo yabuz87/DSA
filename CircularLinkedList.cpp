@@ -172,16 +172,17 @@ void reverse(LinkedList *&head) {
         current->next = prev;
         prev = current;
         current = next;
-    } while (current != start);
+    } while (current != start);     
 
     head->next = prev;
     head = prev;
 }
+void menu(LinkedList *&head);
 void deletionMenu(LinkedList *&head)
 {
     int choice,sub;
     cout<<"*********Deletion Menu*******\n\n";
-    cout<<"1.Delete At Begining\n\n2.Delete At Last \n\n3.Delete At Any position\n\n";
+    cout<<"1.Delete At Begining\n\n2.Delete At Last \n\n3.Delete At Any position\n\n0.back to Menu";
     cin>>choice;
     
     switch(choice)
@@ -228,15 +229,19 @@ void deletionMenu(LinkedList *&head)
         else
         return;
         break;
+        case 0:
+        system("CLS");
+        menu(head);
     }
     
 }
+
 void insertionMenu(LinkedList *&head)
 {
     int choice,sub;
     int pos,val;
     cout<<"\n\n*********Insertion Menu*******\n\n";
-    cout<<"1.Insertion At Begining\n\n2.Insertion At Last \n\n3.Insertion At Any position\n\n";
+    cout<<"1.Insertion At Begining\n\n2.Insertion At Last \n\n3.Insertion At Any position\n\n0.return  Menu\n\n";
     cin>>choice;
     switch (choice)
     {
@@ -258,6 +263,8 @@ void insertionMenu(LinkedList *&head)
         cout<<"Enter value\n\n";
         cin>>val;
         insertLast(head,val);
+        system("CLS");
+        display(head);
         cout<<"Enter \n\n1.back to Menu  0.exit\n\n";
         cin>>sub;
         if(sub==1)
@@ -283,8 +290,10 @@ void insertionMenu(LinkedList *&head)
         }
         else
         {return;} 
-        "?\
-        ] "
+        break;
+        case 0:
+        system("CLS");
+        menu(head);
         break;
 
     }
@@ -318,27 +327,6 @@ switch(option)
 }
 
 int main() {
-    // insertFirst(head, 10); // Insert at beginning
-    // insertLast(head, 30); // Insert at end
-    // insertAtAny(head, 2, 20); // Insert at position 2
-
-    // display(head); // Display list
-
-    // deleteFirst(head); // Delete first node
-    // display(head); // Display list
-
-    // deleteLast(head); // Delete last node
-    // display(head); // Display list
-
-    // insertLast(head, 40); // Insert at end
-    // insertLast(head, 50); // Insert at end
-    // display(head); // Display list
-
-    // deleteAtAny(head, 2); // Delete node at position 2
-    // display(head); // Display list
-
-    // reverse(head); // Reverse the list
-    // display(head); // Display reversed list
     menu(head);
 
     return 0;

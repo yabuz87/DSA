@@ -200,9 +200,24 @@ void reverse(LinkedList *head) {
     cout << "]" << endl;
 }
 
-void search(LinkedList *head,int target)
+bool search(LinkedList *head,int target)
 {
-
+    LinkedList *current = head;
+    while (current != nullptr)
+    {
+        int pos=1;
+            if(current->data==target)
+            {
+                cout<<"Element found at index "<<pos;
+                return true;
+            }
+        current=current->next;
+    }
+    else
+    {
+        cout<<"Element not found\n";
+        return false;
+    } 
 }
 void menu(LinkedList *&head);
 void insertMenu(LinkedList *&head);
