@@ -169,7 +169,6 @@ void deleteAt(LinkedList *&head, int position) {
 
 void reverseDisplayList(LinkedList *&head)
    { 
-    cout<<"[";
     {
         if(head==nullptr)
             return;
@@ -179,8 +178,7 @@ void reverseDisplayList(LinkedList *&head)
         cout<<" "<<head->data<<" ";
 
 
-    }  
-    cout << "]" << endl;
+    }
 }
 
 bool search(LinkedList *head,int target)

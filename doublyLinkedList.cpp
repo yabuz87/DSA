@@ -185,7 +185,6 @@ void reverse(LinkedList *head) {
     }
 
     LinkedList *current = head;
-
     // Move to the end of the list
     while (current->next != nullptr) {
         current = current->next;
@@ -208,14 +207,14 @@ bool search(LinkedList *head,int target)
         int pos=1;
             if(current->data==target)
             {
-                cout<<"Element found at index "<<pos;
+                // cout<<"Element found at index "<<pos;
                 return true;
             }
         current=current->next;
     }
-    else
+    
     {
-        cout<<"Element not found\n";
+        // cout<<"Element not found\n";
         return false;
     } 
 }
@@ -240,7 +239,7 @@ void insertMenu(LinkedList *&head) {
             cin >> val;
             insertFirst(head, val);
             display(head);
-            cout<<"0.Exit\n\n1.Back to menu\n\n";
+            cout<<"\n\n0.Exit\n\n1.Back to menu\n\n";
             cin>>Op;
             if(Op==1)
             {
@@ -257,7 +256,7 @@ void insertMenu(LinkedList *&head) {
             cin >> val;
             insertLast(head, val);
             display(head);
-            cout<<"0.Exit\n\n1.Back to menu\n\n";
+            cout<<"\n\n0.Exit\n\n1.Back to menu\n\n";
             cin>>Op;
             if(Op==1)
             {
@@ -341,6 +340,7 @@ void deleteMenu(LinkedList *&head){
             deleteAt(head, pos);
             display(head);
             cout<<"0.Exit\n\n1.Back to menu\n\n";
+            cin>>Op;
             if(Op==1)
             {
                 system("CLS");
@@ -367,7 +367,7 @@ void deleteMenu(LinkedList *&head){
 void menu(LinkedList *&head)
 {
     cout<<"This is a menu for doubly LinkedList\n\n 1.inserting\n\n 2.Delete\n\n 3.Searching\n\n4.Reverse List\n\n";
-    int option;
+    int option,Op;
     cin>>option;
     switch(option)
     {
@@ -380,15 +380,32 @@ void menu(LinkedList *&head)
          deleteMenu(head);
          break;
         case 3:
+
         cout<<"Enter the number you wanna check\n";
         int target;
         cin>>target;
         system("CLS");
-        search(head,target);
+        cout<<search(head,target);
+        cout<<"0.Exit\n\n1.Back to menu\n\n";
+            cin>>Op;
+            if(Op==1)
+            {
+                system("CLS");
+                deleteMenu(head);
+            }
+
         break;
         case 4:
         system("CLS");
         reverse(head);
+        cout<<"0.Exit\n\n1.Back to menu\n\n";
+            cin>>Op;
+            if(Op==1)
+            {
+                system("CLS");
+                deleteMenu(head);
+            }
+
         break;
 
     }

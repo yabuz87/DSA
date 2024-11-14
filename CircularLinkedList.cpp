@@ -295,6 +295,9 @@ void insertionMenu(LinkedList *&head)
         system("CLS");
         menu(head);
         break;
+        default:
+        cout<<"Invalid choice\n\n";
+         menu(head);
 
     }
     
@@ -318,6 +321,7 @@ switch(option)
     case 3:
     system("CLS");
     reverse(head);
+    display(head);
     break;
     case 0:
     cout<<"Exiting the program\n\n";
