@@ -13,7 +13,7 @@ void display(LinkedList *head) {
     if (current != nullptr) {
         cout << "[ ";
         do {
-            cout << current->data << " ";
+            cout << current->data << "->";
             current = current->next;
         } while (current != head);
         cout << "]" << endl;
@@ -271,14 +271,20 @@ void insertionMenu(LinkedList *&head)
         cout<<"Enter position\n\n";
         cin>>pos;
         cout<<"Enter value\n\n";
+        cin>>val;
         insertAtAny(head,pos,val);
+        display(head);
         cout<<"Enter \n\n1.back to Menu  0.exit\n\n";
         cin>>sub;
         if(sub==1)
-        {system("CLS");
-        insertionMenu(head);}
+        {
+            system("CLS");
+        insertionMenu(head);
+        }
         else
-        return;
+        {return;} 
+        "?\
+        ] "
         break;
 
     }
