@@ -1,3 +1,14 @@
+/*
+        two pointer and sliding window
+        - two pointers, one at the start and one at the end of the window
+        - move the pointers based on the condition
+        - return the result
+        types of pattern in the sliding window
+        1.constant window(for example you may asked to check  the maximum of the sub array with having 4 elements from an array having 10 elements.)
+        2.variable window(for example you may asked to check the maximum of the sub array with having elements with less than k number)
+        3.
+
+ */
 /* this is a question asked 
 what is the maximum length of the window 
 in the given array with the sum
@@ -10,6 +21,8 @@ in the given array with the sum
         int[] check=new int[]{2,5,1,7,10};
         Window w=new Window();
         System.out.println(w.betterApproach(check,14));
+        System.out.println("this one is better than others as compared to the above ones");
+        System.out.println(w.optimal(check,14));
         // System.out.println(w.maxSum(check,3));
 
         
@@ -46,7 +59,28 @@ class Window{
         }
         return maxLen;
     }
-    public int  betterApproach(int[] num, int k)
+    public int betterApproach(int[]num,int k)
+    {
+        int r=0,l=0,sum=0,maxLen=0;
+        int n=num.length;
+        while(r<n)
+        {
+            sum+=num[r];
+
+            while(sum>k)
+            {
+                sum-=num[l];
+                l++;
+            }
+            if(sum<=k)
+            {
+                maxLen=Math.max(maxLen,r-l+1);
+            }
+            r++;
+        }
+        return maxLen;
+    }
+    public int  optimal(int[] num, int k)
     {
         //let's say the number array is num=[2,5,1,7,10] and k=14
         /*this window is better than the above bruteforce b/c 
