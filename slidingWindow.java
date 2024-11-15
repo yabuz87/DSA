@@ -6,7 +6,13 @@
         types of pattern in the sliding window
         1.constant window(for example you may asked to check  the maximum of the sub array with having 4 elements from an array having 10 elements.)
         2.variable window(for example you may asked to check the maximum of the sub array with having elements with less than k number)
-        3.
+        3.no of sub arrays where the condition <condition>
+        4.the shortest(minimun) window of the Given array.
+        note this all are use  the three methods (concepts)
+        Generating all the sub-array(which we used in bruteforce algorithm)
+        using while condition as we used in the second and the third merthod
+         and also we may optimize our algorithms depending on the given
+         problem that is it.
 
  */
 /* this is a question asked 
