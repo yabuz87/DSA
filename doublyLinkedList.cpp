@@ -11,7 +11,7 @@ struct LinkedList{
     cout<<"[";
     while(head!=nullptr)
     {
-        cout<<head->data<<" ";
+        cout<<head->data<<"<->";
         head=head->next;
     }
     cout<<"]";
