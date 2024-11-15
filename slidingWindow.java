@@ -9,7 +9,9 @@ in the given array with the sum
     public static void main(String[] args) {
         int[] check=new int[]{2,5,1,7,10};
         Window w=new Window();
-        System.out.println(w.maxLength(check,14));
+        System.out.println(w.betterApproach(check,14));
+        // System.out.println(w.maxSum(check,3));
+
         
     }
 }
@@ -44,5 +46,49 @@ class Window{
         }
         return maxLen;
     }
+    public int  betterApproach(int[] num, int k)
+    {
+        //let's say the number array is num=[2,5,1,7,10] and k=14
+        /*this window is better than the above bruteforce b/c it has only O(n) time complexity{T.C} and O(1) space complexity which beats the above beat in O(n) {the above one has almost O(n^2)of time complexity} */
+        int maxsum=0;
+        int sum=0;
+        int r=0,l=0;
+        int len=num.length;
+        while(r<len)
+        {
+            sum+=num[r];
+            if(sum>k)
+            {
+               sum-=num[l];
+               l++; 
+            }
+            if(sum<k)
+            {
+               maxsum=Math.max(maxsum,r-l+1);
+            }
+            r++;
+        }
+        return maxsum;
+            
+    }
+    public int maxSum(int[] num,int k)
+    {
+        //let's say the number array is num=[2,5,1,7,10] and k=3
+        int l=0;
+        int r=k-1;
+        int maxSum=0;
+        int n=num.length;
+        while(r<n-1)
+        {
+            int sum=0;
+            for(int i=l;i<r;i++)
+            {
+                sum=sum+num[i];  
+            }
+            maxSum=Math.max(maxSum,sum);
+        }
+        return maxSum;
+    }
 }
+
 
