@@ -49,7 +49,10 @@ class Window{
     public int  betterApproach(int[] num, int k)
     {
         //let's say the number array is num=[2,5,1,7,10] and k=14
-        /*this window is better than the above bruteforce b/c it has only O(n) time complexity{T.C} and O(1) space complexity which beats the above beat in O(n) {the above one has almost O(n^2)of time complexity} */
+        /*this window is better than the above bruteforce b/c 
+        it has only O(n) time complexity{T.C} and O(1) space complexity 
+        which beats the above beat in O(n) 
+        {the above one has almost O(n^2)of time complexity} */
         int maxsum=0;
         int sum=0;
         int r=0,l=0;
