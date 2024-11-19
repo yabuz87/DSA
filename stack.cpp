@@ -1,35 +1,3 @@
-//#include <iostream>
-//using namespace std;
-// struct stack{
-//     int length;
-//     int num[length];
-//     int pointer=0;
-//     void push(int num[],int val)
-//     {
-//         if(pointer==lenth-1)
-//         {
-//             cout<<"Stack overFlow\n\n";
-//         }
-//         else{
-//             num[pointer]=val;
-//             pointer++;
-//             }
-//     }
-//     void pop(int num[])
-//     {
-//         if(present==0){
-//             cout<<"stack under Flow ";
-//         }
-//         num[pointer]=num[pointer-1];
-//         pointer--;
-        
-//     }
-//     void peek(int num[])
-//     {
-//         cout<<num[pointer];
-//     }
-
-// }
 #include <iostream>
 using namespace std;
 
@@ -69,10 +37,25 @@ struct Stack {
         if (pointer == 0) {
             cout << "Stack is empty\n";
         } else {
-            for (int i = 0; i < pointer; i++) {
-                cout << num[i] << " ";
+                cout<<"|---|"<<endl;
+            for (int i = pointer-1; i >= 0; i--) {
+                cout <<"| "<< num[i] << " |"<<endl;
             }
+            cout<<"|___|";
             cout << endl;
+        }
+    }
+    void isEmpty()
+    {
+        if(pointer==0)
+        {
+            cout<<"Yes the Stack is empty\n\n";
+            return;
+        }
+        else
+        {
+            cout<<"Nope the stack is not empty\n\n";
+            return;
         }
     }
 };
@@ -83,40 +66,106 @@ struct Stack {
 //decimal to binary and palindrome should be linkedList based.
 // gotchaaaaaaa
 
-int menu(stack s)
+void menu(Stack *&s)
 {
-    cout << "\t\t<<<<<<<Stack Menu>>>>>>>\n\n";
-    cout<<"1.push\n\n2.pop\n\n3.peek\n\n4.isEmpty\n\n5.Size\n\n";
-    int option;
+    cout << "\n\n\t\t<<<<<<<Stack Menu>>>>>>>\n\n";
+    cout<<"1.push\n\n2.pop\n\n3.display\n\n4.isEmpty\n\n5.peek\n\n";
+    int option,val,Op;
     cin>>option;
     switch(option)
     {
         case 1:
-        s.push(s);
+        cout<<"Enter the number/ value\n\n";
+        cin>>val;
+        s->push(val);
+        system("CLS");
+        cout<<"\n1.Back to menu  0. Exit\n\n";
+        cin>>Op;
+        if(Op==1)
+        {
+            system("CLS");
+            menu(s);
+        }
+        else{
+            return;
+        }
         break;
         case 2:
-        s.pop(s);
+        s->pop();
+        system("CLS");
+        cout<<"\n1.Back to menu  0. Exit\n\n";
+        cin>>Op;
+        if(Op==1)
+        {
+            system("CLS");
+            menu(s);
+        }
+        else{
+            return;
+        }
+        break;
         case 3:
+        system("CLS");
+        s->display();
+        cout<<"\n1.Back to menu  0. Exit\n\n";
+        cin>>Op;
+        if(Op==1)
+        {
+            system("CLS");
+            menu(s);
+        }
+        else{
+            return;
+        }
+        break;
+        case 4:
+        system("CLS");
+        s->isEmpty();
+        cout<<"\n1.Back to menu  0. Exit\n\n";
+        cin>>Op;
+        if(Op==1)
+        {
+            system("CLS");
+            menu(s);
+        }
+        else{
+            return;
+        }
+        break;
+        case 5:
+        system("CLS");
+        s->peek();
+        cout<<"\n1.Back to menu  0. Exit\n\n";
+        cin>>Op;
+        if(Op==1)
+        {
+            system("CLS");
+            menu(s);
+        }
+        else{
+            return;
+        }
+        break;
+        case 6:
+        default:
+        system("CLS");
+        cout<<"\n\ntry again\n\n";
+        menu(s);
 
     }
 }
 int main() {
-    Stack s;
-    s.push(10);
-    s.push(20);
-    s.push(30);
-    s.display(); // Output: 10 20 30
+    Stack *s=new Stack();
+    //  s->push(10);
+    //  s->push(20);
+    //  s->push(30);
+    //  s->display(); // Output: 10 20 30
 
-    s.peek(); // Output: 30
+    // s.peek(); // Output: 30
 
-    s.pop();
-    s.display(); // Output: 10 20
+    // s.pop();
+    // s.display(); // Output: 10 20
+   menu(s);
 
     return 0;
-}
-
-int main()
-{
-    stack s=new stack(0); 
-    menu(s);
 }

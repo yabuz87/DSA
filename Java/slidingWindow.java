@@ -24,11 +24,12 @@ in the given array with the sum
  public class slidingWindow{
 
     public static void main(String[] args) {
-        int[] check=new int[]{2,5,1,7,10};
+        int[] check=new int[]{2,5,1,7,6,10};
         Window w=new Window();
         System.out.println(w.betterApproach(check,14));
         System.out.println("this one is better than others as compared to the above ones");
         System.out.println(w.optimal(check,14));
+       System.out.println(w.maxSum(check, 4));
         // System.out.println(w.maxSum(check,3));
 
         
@@ -116,21 +117,28 @@ class Window{
     }
     public int maxSum(int[] num,int k)
     {
-        //let's say the number array is num=[2,5,1,7,10] and k=3
-        int l=0;
-        int r=k-1;
-        int maxSum=0;
+        //here the question is to find the maximum number of card you get from the 
+        //given array by just selecting the k element's either from left or from right.
+        int leftSum=0,rightSum=0,sum=0;
         int n=num.length;
-        while(r<n-1)
+        for(int i=0;i<k;i++)
         {
-            int sum=0;
-            for(int i=l;i<r;i++)
-            {
-                sum=sum+num[i];  
-            }
-            maxSum=Math.max(maxSum,sum);
+            leftSum+=num[i];
         }
-        return maxSum;
+        sum=leftSum;
+        int rightIndex=n-1;
+        for(int i=k-1;i>=0;i--)
+        {
+            sum=Math.max(sum,rightSum+leftSum);
+            leftSum=leftSum-num[i];
+            rightSum+=num[rightIndex-1];
+            rightIndex--;
+            sum=Math.max(sum,rightSum+leftSum);
+        }
+
+       
+       return sum;
+    
     }
 }
 
