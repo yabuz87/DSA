@@ -59,12 +59,7 @@ struct Stack {
         }
     }
 };
-//use the concept to  do palindrome
-// decimal to binary
-//infix postfix
-//postfix evaluator
-//decimal to binary and palindrome should be linkedList based.
-// gotchaaaaaaa
+
 
 void menu(Stack *&s)
 {
@@ -169,3 +164,9 @@ int main() {
 
     return 0;
 }
+//use the concept to  do palindrome
+// decimal to binary
+//infix postfix
+//postfix evaluator
+//decimal to binary and palindrome should be linkedList based.
+// gotchaaaaaaa
