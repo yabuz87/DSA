@@ -173,7 +173,7 @@ void menu(Stack &s) {
             cout << "Enter the String: \n\n";
             string Str = " ";
             cin >> Str;
-            cout << "\n\n" << "is \"" << Str << "\" palindrome ? " << (s.isPalindrome(Str) ? "Yes" : "No") << endl;
+            cout << "\n\n\""<< Str <<"\" is " << (s.isPalindrome(Str) ? " " : "Not ") <<"Palindrome."<< endl;
             cout << "1. Back to menu     0.Exit\n\n";
             cin >> Op;
             if (Op == 1) {
@@ -199,6 +199,7 @@ void menu(Stack &s) {
             break;
         }
         default: {
+            system("cls");
             cout << "Invalid choice\n";
             menu(s);
             break;
