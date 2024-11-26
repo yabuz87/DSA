@@ -3,8 +3,7 @@ using namespace std;
 struct LinkedList{
     int data;
     LinkedList *next;
-    // LinkedList *prev;
-};
+   };
 
  void display(LinkedList *head)
  {
@@ -24,7 +23,6 @@ struct LinkedList{
     if(head==nullptr)
     {
         head=newNode;
-        // head->prev=nullptr;
     }
     else {
         newNode->next=head;
@@ -69,7 +67,7 @@ else{
         return;
     }
 
- if(position==1)
+ else if(position==1)
     {
         newNode->next=head;
         head=newNode;
@@ -88,17 +86,16 @@ else{
         cout<<"out of bound\n\n";
         return;
     }
+
     if(current->next==nullptr)
     {
             current->next=newNode;
     }
-
-
    else {
-    LinkedList *temp=current;
+    LinkedList *temp=current->next;
    
-    newNode->next=current->next;
-    temp->next=newNode;
+    current->next=newNode;
+    newNode->next=temp;
    }
    }
  }

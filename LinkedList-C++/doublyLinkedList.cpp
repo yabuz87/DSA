@@ -57,7 +57,7 @@ else{
  }
 
 
- void insertAt(LinkedList *&head,int val,int position)
+ void insertAt(LinkedList *&head,int position,int val)
  {
 
     LinkedList *newNode=new LinkedList();
@@ -67,14 +67,18 @@ else{
     if(head==nullptr)
     {
         head=newNode;
+       // head->next=nullptr;
+       // head->prev=nullptr;
+        return;
     }
 
- if(position==1)
+  else if(position==1)
     {
         newNode->next=head;
         head->prev=newNode;
         head=newNode;
-        head->prev=nullptr;
+       // head->prev=nullptr;
+        return;
 
     }
    else{
@@ -90,20 +94,26 @@ else{
         cout<<"out of bound";
         return;
     }
-    if(current->next==nullptr)
+  if(current->next==nullptr)
     {
             current->next=newNode;
             newNode->prev=current;
             newNode->next=nullptr;
+            return;
     }
 
 
    else {
-    LinkedList *temp=current;
-    newNode->next=current->next;
-    current->next->prev=newNode;
-    temp->next=newNode;
-    newNode->prev=temp;
+    LinkedList *temp=current->next;
+
+current->next=newNode;
+newNode->prev=current;
+newNode->next=temp;
+temp->prev=newNode;
+    // newNode->next=current->next;
+    // current->next->prev=newNode;
+    // temp->next=newNode;
+    // newNode->prev=temp;
    }
    }
  }
