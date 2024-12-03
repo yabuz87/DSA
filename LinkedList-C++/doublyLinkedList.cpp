@@ -180,9 +180,7 @@ void deleteAt(LinkedList *&head, int position) {
         }
 
         LinkedList *temp = current->next;
-        if (temp->next != nullptr) {
-            temp->next->prev = current;
-        }
+         temp->next->prev = current;
         current->next = temp->next;
 
         delete temp;
