@@ -25,8 +25,7 @@ struct Stack {
             cout << "Stack Underflow\n";
             return -1;
         } else {
-            pointer--;
-            return num[pointer];
+            return num[--pointer];
         }
     }
 
@@ -40,7 +39,7 @@ int evaluatePostfix(string postfix) {
 
     for (char &c : postfix) {
         if (isdigit(c)) {
-            s.push(c - '0');
+            s.push(c-'0');
         } else {
             int val2 = s.pop();
             int val1 = s.pop();
