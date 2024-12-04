@@ -1,74 +1,115 @@
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <string>
 using namespace std;
 
-struct stack{
-    vector<string> ch[10];
-    int pointer=0;
-    
-    void push(string val)
-{
-    if(pointer>=0 || pointer<=10)
-    {
-        ch.push_back(val);
-        return
-    }
-    else if(pointer>9){
-        cout<<"Stack over flow"<<endl;
-        return;
-    }
-    else {
-        cout<<"stack under flow"<<endl;
-        return;
-    }
-}
-string pop()
-{
-    if(pointer>=0)
-    {
-        
-        return ch[--pointer];
-    }
-    else if(pointer<0)
-    {
-        cout<<"stack is empty"<<endl;
-        return "-1";
-    }
-}
-void display()
-{
-    int i=ch.length;
-    for(i=ch.length();i>=0;i++)
-    {
-            cout<<ch[i]<<" ";
-    }
-}
-void postToInfix(string str)
-{
-    int i = 0, n = str.length();
-    stack s;
-    while (i < n) {
-        if(str[i]!='-' || str[i]!='+' || str[i]!='/'|| str[i]!='*')
-        {
-            push(str[i]);
-            i++;
+struct stack {
+    char ch[20];
+    int top = -1;
+
+    void push(char val) {
+        if (top >= 19) {
+            cout << "stack overflow" << endl;
+            return;
         }
-        else{
-            // string a=pop();
-            // string b=pop();
-            string  c="("+pop()+"str[i]"+pop()+")";
-            push(c);
+        ch[++top] = val;
+    }
+
+    void display() {
+        if (top == -1) {  // Use -1 to check if stack is empty
+            cout << "Stack is empty" << endl;
+        } else {
+            cout << "|---|" << endl;
+            for (int i = top; i >= 0; i--) {
+                cout << "| " << ch[i] << " |" << endl;
+            }
+            cout << "|___|" << endl;
         }
-}
-}
+    }
+
+    char pop() {
+        if (top <= -1) {
+            cout << "stack underflow" << endl;
+            return '0';  // Indicates stack underflow
+        }
+        return ch[top--];  // Corrected sequence: Decrement top after returning the value
+    }
+
+    char peak() {
+        if (top >= 0) {
+            return ch[top];
+        } else {
+            cout << "stack is empty" << endl;
+            return '0';  // Indicates empty stack
+        }
+    }
+
+    int precedence(char op) {
+        if (op == '+' || op == '-') {
+            return 1;
+        }
+        if (op == '*' || op == '/') {
+            return 2;
+        }
+        if (op == '^') {
+            return 3;
+        }
+        return 0;
+    }
+
+    char* postfixToinfix(string str) {
+        int n = str.length();
+        char* arr = new char[n + 1];  // Ensure enough space and null-terminated
+        int count = 0;
+        int i = 0;
+
+        while (i < n) {
+            if (isalpha(str[i])|| isdigit(str[i])) {
+                cout << str[i] << endl;
+                arr[count++] = str[i];
+                i++;
+                continue;
+            } else if (str[i] == '(') {
+                push(str[i]);
+                display();
+                i++;
+                continue;
+            } else if (str[i] == ')') {
+                while (peak() != '(') {
+                    arr[count++] = pop();
+                }
+                pop();  // Pop the '(' from the stack
+                display();
+                i++;
+                continue;
+            } else if (str[i] == '^') {
+                push(str[i]);
+                display();
+                i++;
+                continue;
+            } else {
+                while (top != -1 && precedence(peak()) >= precedence(str[i])) {
+                    arr[count++] = pop();
+                }
+                push(str[i]);
+                display();
+                i++;
+            }
+        }
+
+        // Pop all the operators left in the stack
+        while (top != -1) {
+            arr[count++] = pop();
+        }
+        arr[count] = '\0';  // Null-terminate the array
+
+        return arr;
+    }
 };
 
-
-
-int main()
-{
+int main() {
     stack s;
-    string str = "AB*CD-+F/";
-    s.postToInfix(str);
-    s.display();
+    char* np = s.postfixToinfix("a*(o+h)+b*(c+d)");
+    cout << np << endl;
+    delete[] np;  // Free the allocated memory
+    return 0;
 }
