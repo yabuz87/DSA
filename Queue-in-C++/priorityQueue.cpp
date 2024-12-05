@@ -1,83 +1,135 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
-struct queue{
-    int front=-1;
-    int rear=-1;
-    int num[20];
-   void enqueue(int val)
-   {
-        if(rear==19)
-        {
-           cout<<"over flow";
-           return;
-        }
-        else if(front=-1 &&rear==-1)
-        {
-            front=rear=0;
-            num[rear]=val;
-            return;
-        }
-        else{
-            rear++;
-            num[rear]=val;
-        }
-        
-   }
-  int  dequeue()
-    {
-            if(front==-1&& front==-1)
-            {
-                cout<<"underflow\n";
-                return -1;
-            }
-            else if(front==rear)
-            {
-               int temp=num[front];
-                front=rear=-1;
-                return temp;
-            }
-            else{
-                return num[front++];
-            }
-    }
-    void display()
-    {
-        if(front==-1)
-        {
-            cout<<"queue is empty\n";
-        }
-        else{
 
-            for(int i=front;i<rear+1;i++)
-            {
-               
-                cout<<num[i]<<"<-";
-            }
+struct node {
+    int data;
+    node* next;
+    node* prev;
+};
+
+struct priorityQueue {
+    node* front = nullptr;
+    node* rear = nullptr;
+
+    void enqueueFront(int val) {
+        node* newNode = new node();
+        newNode->data = val;
+        newNode->next = nullptr;
+        newNode->prev = nullptr;
+
+        if (front == nullptr && rear == nullptr) {  
+            front = rear = newNode;
+        } else {
+            newNode->next = front;
+            front->prev = newNode;
+            front = newNode;
         }
     }
-    int peak()
+
+int peak()
+{
+    if(front==nullptr)
     {
-        if(front==-1)
-        {
-            cout<<"queue is empty\n";
-            return -1;
+        cout<<"empty\n";
+        return -1;
+    }
+    else {
+        return front->data;
+    }
+}
+    void enqueueRear(int val) {
+        node* newNode = new node();  
+        newNode->data = val;
+        newNode->next = nullptr;
+        newNode->prev = nullptr;
+
+        if (front == nullptr && rear == nullptr) {  
+            front = rear = newNode;
+        } else {
+            newNode->prev = rear;
+            rear->next = newNode;
+            rear = newNode;
         }
-        else {
-            return num[front];
+    }
+
+    void dequeueFront() {
+        if (front == nullptr) {
+            cout << "queue is empty\n";
+            return;
+        } else {
+            node* temp = front;
+            front = front->next;
+            if (front != nullptr) {
+                front->prev = nullptr;
+            } else {
+                rear = nullptr;  
+            }
+            delete temp;
+        }
+    }
+
+
+void add(int val)
+{
+    if(peak()>val)
+    {
+        enqueueFront(val);
+    }
+    else if(peak()<val)
+    {
+            enqueueRear(val);
+    }
+    else{
+        enqueueFront(val);
+       }
+}
+void poll()
+{
+    dequeueFront();
+}
+    // void dequeueRear() {
+    //     if (rear == nullptr) {
+    //         cout << "queue is empty\n";
+    //         return;
+    //     } else {
+    //         node* temp = rear;
+    //         rear = rear->prev;
+    //         if (rear != nullptr) {
+    //             rear->next = nullptr;
+    //         } else {
+    //             front = nullptr;  
+    //         }
+    //         delete temp;
+    //     }
+    // }
+
+    void display() {
+        if (front != nullptr) {
+            node* current = front;
+            cout << "<-";
+            while (current != nullptr) {  
+                cout << current->data << "<-";
+                current = current->next;
+            }
+            cout << "nullptr\n";
+        } else {
+            cout << "queue is empty\n";
         }
     }
 };
 
-int main()
-{
-    queue q;
-    q.enqueue(3);
-    q.enqueue(0);
-    q.enqueue(4);
-    q.enqueue(8);
+int main() {
+    priorityQueue q;
+    q.add(3);
+    q.add(-3);
+    q.add(0);
+    q.add(4);
+    q.add(8);
     q.display();
-    int n=q.dequeue();
-    cout<<"\n"<<n<<endl;
+    cout << "After dequeue from front:\n";
+    q.display();
+    q.poll();
+    cout << "After dequeue from rear:\n";
     q.display();
     return 0;
 }

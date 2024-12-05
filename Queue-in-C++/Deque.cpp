@@ -11,6 +11,28 @@ struct Deque {
     node* front = nullptr;
     node* rear = nullptr;
 
+
+void enqueueFront(int val);
+void enqueueRear(int val);
+void dequeueFront();
+void add(int val)
+{
+    if(peak()>val)
+    {
+        enqueFront(val);
+    }
+    else if(peak()<val)
+    {
+            enqueueRear(val);
+    }
+    else{
+        enqueFront(val);
+       }
+}
+void poll()
+{
+    dequeueFront();
+}
     void enqueueFront(int val) {
         node* newNode = new node();
         newNode->data = val;
@@ -26,6 +48,17 @@ struct Deque {
         }
     }
 
+int peak()
+{
+    if(front==nullptr)
+    {
+        cout<<"empty\n";
+        return -1;
+    }
+    else {
+        return front->data;
+    }
+}
     void enqueueRear(int val) {
         node* newNode = new node();  
         newNode->data = val;
