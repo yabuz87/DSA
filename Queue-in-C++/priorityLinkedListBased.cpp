@@ -1,13 +1,19 @@
 #include <iostream>
 using namespace std;
 
+
+
+void Sort(node* front)
+{
+    // for(fron* i=)
+}
 struct node {
     int data;
-    node* next;
+    node* next
     node* prev;
 };
 
-struct priorityQueue {
+struct Deque{
     node* front = nullptr;
     node* rear = nullptr;
 
@@ -87,21 +93,6 @@ void poll()
 {
     dequeueFront();
 }
-    // void dequeueRear() {
-    //     if (rear == nullptr) {
-    //         cout << "queue is empty\n";
-    //         return;
-    //     } else {
-    //         node* temp = rear;
-    //         rear = rear->prev;
-    //         if (rear != nullptr) {
-    //             rear->next = nullptr;
-    //         } else {
-    //             front = nullptr;  
-    //         }
-    //         delete temp;
-    //     }
-    // }
 
     void display() {
         if (front != nullptr) {
@@ -119,7 +110,7 @@ void poll()
 };
 
 int main() {
-    priorityQueue q;
+    Deque q;
     q.add(3);
     q.add(-3);
     q.add(0);

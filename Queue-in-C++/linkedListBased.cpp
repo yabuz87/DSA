@@ -73,7 +73,7 @@ int main()
   q.enqueue(12);
   q.enqueue(14);
   q.enqueue(16);
-   q.display();
+  q.display();
    cout<<"\n";
   q.dequeue();
   q.display();
