@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class A2SVProblem{
     public static void main(String[] args)
     {
@@ -77,6 +79,22 @@ public class A2SVProblem{
                 left++;
          }
          return max;
+    }
+    boolean canMakePalindrome(String s)
+    {
+        HashMap<Character,Integer> result=new HashMap<>();
+        for(Character c: s.toCharArray()){
+            result.put(c,(result.getOrDefault(c,0)+1));
+        }
+        int oddCount=0;
+        for(int count:result.values())
+        {
+            if(count%2!=0)
+            {
+                oddCount++;
+            }
+        }
+        return oddCount<=1;
     }
     
 }
