@@ -1,8 +1,8 @@
-public class Problem{
+public class A2SVProblem{
     public static void main(String[] args)
     {
-        System.out.println(new Problem().checkLength("aaaabaab", 4));
-        System.out.println(new Problem().numberOfSub("zzzz"));
+        System.out.println(new A2SVProblem().checkLength("aaaabaab", 4));
+        System.out.println(new A2SVProblem().numberOfSub("zzzz"));
     }
 
 
