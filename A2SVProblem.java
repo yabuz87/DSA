@@ -4,8 +4,10 @@ public class A2SVProblem{
     public static void main(String[] args)
     {
         System.out.println(new A2SVProblem().checkLength("aaaabaab", 4));
-        // System.out.println(new A2SVProblem().numberOfSub("zzzz"));
+        System.out.println(new A2SVProblem().numberOfSub("zzzz"));
         System.out.println(new A2SVProblem().maxNumberofArray(new int[]{4,3,-2,5}));
+        System.out.println(new A2SVProblem().canMakePalindrome("ivicc"));
+
     }
 
 
@@ -82,19 +84,24 @@ public class A2SVProblem{
     }
     boolean canMakePalindrome(String s)
     {
-        HashMap<Character,Integer> result=new HashMap<>();
-        for(Character c: s.toCharArray()){
+        HashMap<Character, Integer> result=new HashMap<>();
+        int oddCount=0;
+        for(Character c: s.toCharArray())
+        {
             result.put(c,(result.getOrDefault(c,0)+1));
         }
-        int oddCount=0;
-        for(int count:result.values())
+
+        for(Integer count:result.values())
         {
-            if(count%2!=0)
-            {
-                oddCount++;
-            }
+                if(count%2!=0)
+                {
+                    oddCount++;
+                }
         }
         return oddCount<=1;
+
     }
+
+
     
 }
