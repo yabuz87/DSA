@@ -2,7 +2,8 @@ public class A2SVProblem{
     public static void main(String[] args)
     {
         System.out.println(new A2SVProblem().checkLength("aaaabaab", 4));
-        System.out.println(new A2SVProblem().numberOfSub("zzzz"));
+        // System.out.println(new A2SVProblem().numberOfSub("zzzz"));
+        System.out.println(new A2SVProblem().maxNumberofArray(new int[]{4,3,-2,5}));
     }
 
 
@@ -53,6 +54,29 @@ public class A2SVProblem{
 
         }
         return count;
+    }
+    int maxNumberofArray(int[] arr)
+    { 
+         int max=0;
+         int formerSum=0;
+         int latterSum=0;
+         int   n=arr.length;
+         int left=0;
+         while(left<n)
+         {
+           int  right=left;
+           formerSum+=arr[left];
+           while(right<n)
+           {
+               latterSum+=arr[right];
+               right++;    
+           }
+              max=Math.max(formerSum,latterSum);
+              latterSum=0;
+              System.out.println("max:"+max);
+                left++;
+         }
+         return max;
     }
     
 }
