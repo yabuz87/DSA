@@ -7,6 +7,7 @@ public class A2SVProblem{
         System.out.println(new A2SVProblem().numberOfSub("zzzz"));
         System.out.println(new A2SVProblem().maxNumberofArray(new int[]{4,3,-2,5}));
         System.out.println(new A2SVProblem().canMakePalindrome("ivicc"));
+        System.out.println(new A2SVProblem().longestSubString("pwwkew"));
 
     }
 
@@ -100,6 +101,40 @@ public class A2SVProblem{
         }
         return oddCount<=1;
 
+    }
+
+    int longestSubString(String s)
+    {
+        HashMap<Character, Integer> container=new HashMap<>();
+        int left=0;
+        if(s.length()==0)
+        {
+            return 0;
+        }
+        else if(s.equals(" "))
+        {
+            return 1;
+        }
+        int right=0;
+        int maxLength=0;
+        while(right<s.length())
+        {
+            char current=s.charAt(right);
+            if(container.containsKey(current))
+            {
+              left=Math.max(left,container.get(current)+1);
+              maxLength=Math.max(maxLength, (right-left)+1); 
+              container.replace(s.charAt(right),right); 
+              
+
+            }
+            else{
+                container.put(s.charAt(right),right);
+                // maxLength=Math.max(maxLength, (right-left+1));
+            }
+            right++;
+        }
+        return maxLength;
     }
 
 
