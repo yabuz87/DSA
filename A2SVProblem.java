@@ -136,6 +136,28 @@ public class A2SVProblem{
         }
         return maxLength;
     }
+    int FindMaxSubArray(int[] nums,int k)
+    {
+        int n=nums.length;
+        int left=0;
+        int right=0;
+        int sum=0;
+        int max=0;
+        for(int i=0;i<k;i++)
+
+        {
+            sum+=nums[i];
+        }
+        while(right<n)
+        {
+            sum+=nums[right];
+            max=Math.max(max,sum);
+            sum-=nums[left];
+            left++;
+            right++;
+        }
+        return max;
+    }
 
 
     
