@@ -3,12 +3,12 @@ import java.util.HashMap;
 public class A2SVProblem{
     public static void main(String[] args)
     {
-        System.out.println(new A2SVProblem().checkLength("aaaabaab", 4));
+        // System.out.println(new A2SVProblem().checkLength("aaaabaab", 4));
         // System.out.println(new A2SVProblem().numberOfSub("zzzz"));
         // System.out.println(new A2SVProblem().maxNumberofArray(new int[]{4,3,-2,5}));
         // System.out.println(new A2SVProblem().canMakePalindrome("ivicc"));
-        System.out.println(new A2SVProblem().longestSubString("pwwkew"));
-        System.out.println(new A2SVProblem().numberofSubstring("abcde", 3));
+        // System.out.println(new A2SVProblem().longestSubString("pwwkew"));
+        // System.out.println(new A2SVProblem().numberofSubstring("abcde", 3));
         System.out.println(new A2SVProblem().subStringAtMostTwoChar("eccccbbbbb"));
 
     }
@@ -189,7 +189,6 @@ public class A2SVProblem{
         HashMap<Character, Integer> container = new HashMap<>();
         int left = 0;
         int right = 0;
-        int length = 0;
 
         while (right < s.length()) {
             char c = s.charAt(right);
@@ -211,8 +210,9 @@ public class A2SVProblem{
 
         }
        
-        Integer i;
-            for(i:container.values())
+        int length=0;
+        
+            for( Integer i:container.values())
             {
                 length+=i;
             }
