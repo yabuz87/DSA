@@ -3,11 +3,13 @@ import java.util.HashMap;
 public class A2SVProblem{
     public static void main(String[] args)
     {
-        System.out.println(new A2SVProblem().checkLength("aaaabaab", 4));
-        System.out.println(new A2SVProblem().numberOfSub("zzzz"));
-        System.out.println(new A2SVProblem().maxNumberofArray(new int[]{4,3,-2,5}));
-        System.out.println(new A2SVProblem().canMakePalindrome("ivicc"));
-        System.out.println(new A2SVProblem().longestSubString("pwwkew"));
+        // System.out.println(new A2SVProblem().checkLength("aaaabaab", 4));
+        // System.out.println(new A2SVProblem().numberOfSub("zzzz"));
+        // System.out.println(new A2SVProblem().maxNumberofArray(new int[]{4,3,-2,5}));
+        // System.out.println(new A2SVProblem().canMakePalindrome("ivicc"));
+        // System.out.println(new A2SVProblem().longestSubString("pwwkew"));
+        // System.out.println(new A2SVProblem().numberofSubstring("abcde", 3));
+        System.out.println(new A2SVProblem().subStringAtMostTwoChar("eccccbbbbb"));
 
     }
 
@@ -136,7 +138,7 @@ public class A2SVProblem{
         }
         return maxLength;
     }
-    int FindMaxSubArray(int[] nums,int k)
+    int findMaxSubArray(int[] nums,int k)
     {
         int n=nums.length;
         int left=0;
@@ -158,7 +160,68 @@ public class A2SVProblem{
         }
         return max;
     }
-
-
+    public int numberofSubstring(String s, int k) {
+        int left = 0, right = k - 1, subString = 0;
     
+        while (right < s.length()) {
+            int countConsonant = 0;
+    
+            for (int count = left; count <= right; count++) {
+                char c = s.charAt(count);
+                if (c != 'a' && c != 'e' && c != 'i' && c != 'o' && c != 'u') {
+                    countConsonant++;
+                }
+            }
+    
+            if (countConsonant % 2 == 0) {
+                subString++;
+            }
+    
+            left++;
+            right++;
+        }
+    
+        return subString;
+    }
+
+
+    public int subStringAtMostTwoChar(String s) {
+        HashMap<Character, Integer> container = new HashMap<>();
+        int left = 0;
+        int right = 0;
+
+        while (right < s.length()) {
+            char c = s.charAt(right);
+            if(container.containsKey(c))
+           { container.put(c, container.getOrDefault(c, 0) + 1);
+           }
+
+            else{ 
+                char leftChar = s.charAt(left);
+                if(container.size() == 2) {
+                container.put(leftChar, container.get(leftChar) - 1);
+                }
+                else if (container.get(leftChar) == 0) {
+                    container.remove(leftChar);
+                }
+                left++;
+            }
+            right++;
+
+        }
+       
+        int length=0;
+        
+            for( Integer i:container.values())
+            {
+                length+=i;
+            }
+          
+         return length;   
+        }
+
+        
+    
+
 }
+
