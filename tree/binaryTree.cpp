@@ -44,6 +44,52 @@ void insert(int val) {
         cout<<val<<" has added successfully\n";
     }
 }
+
+
+//another way to insert
+void insert2(int val) {
+    node* newNode = new node();
+    newNode->data = val;
+    newNode->left = nullptr;
+    newNode->right = nullptr;
+    int flag = 0;
+    if(root==nullptr)
+    {
+        root=newNode;
+        cout<<val<<" has added successfully\n";
+    }
+    else{
+        node *temp=root;
+        while(flag==0)
+        {
+            if(val >temp->data)
+            {
+                if(temp->right==nullptr)
+                {
+                    temp->right=newNode;
+                    cout<<val<<" has added successfully\n";
+                    flag=1;
+                }
+                else
+                {
+                    temp=temp->right;
+                }
+            }
+            else{
+                if(temp->left==nullptr)
+                {
+                    temp->left=newNode;
+                    cout<<val<<" has added successfully\n";
+                    flag=1;
+                }
+                else
+                {
+                    temp=temp->left;
+                }
+            }
+        }
+    }
+}
 void pre_order_traverse() {
     if (root == nullptr) {
         return;
