@@ -30,6 +30,20 @@ struct Graph {
             cout << "Invalid edge\n";
         }
     }
+    void display()
+   { 
+      // Display the adjacency matrix
+    cout<<"this one is the adjacency matrix of the graph\n";
+    cout<<"  _ _ _ _ _ _ \n";
+    for (int i = 0; i <v; ++i) {
+         cout<<"\n| ";
+        for (int j = 0; j <v; ++j) {
+            cout <<adjMatrix[i][j] << " ";
+        }
+        cout<<" |\n";
+    }
+   cout<<"  _ _ _ _ _ _ \n";
+   }
 
     // Destructor to clean up memory
     ~Graph() {
@@ -38,6 +52,7 @@ struct Graph {
         }
         delete[] adjMatrix;
     }
+   
 };
 
 int main() {
@@ -45,18 +60,9 @@ int main() {
     n.addEdge(0, 1);
     n.addEdge(0, 2);
     n.addEdge(4,2); 
+    n.display();
 
-    // Display the adjacency matrix
-    cout<<"this one is the adjacency matrix of the graph\n";
-    cout<<"  _ _ _ _ _ _ \n";
-    for (int i = 0; i < n.v; ++i) {
-         cout<<"\n| ";
-        for (int j = 0; j < n.v; ++j) {
-            cout << n.adjMatrix[i][j] << " ";
-        }
-        cout<<" |\n";
-    }
-   cout<<"  _ _ _ _ _ _ \n";
+    
 
     return 0;
 }
