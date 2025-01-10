@@ -44,7 +44,7 @@ struct graphList
     {
         return e;
     }
-    void BFSTraversal(int root)
+    void BFSTraversal(int startingNode)
     {
         bool visited[v];
         for(int i=0;i<v;i++)
@@ -53,7 +53,7 @@ struct graphList
         }
         queue<int> q;
         visited[root]=true;
-        q.push(root);
+        q.push(startingNode);
         while(!q.empty())
         {
             int u=q.front();
@@ -86,6 +86,6 @@ int main()
     p.display();
     cout<<"\n";
     p.BFSTraversal(0);
-    
+
     cout<<"\n"<<p.get_edge();
 }
