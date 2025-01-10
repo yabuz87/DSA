@@ -49,9 +49,10 @@ int main() {
     addEdge(adj, 0, 2);
     addEdge(adj, 0, 3);
     addEdge(adj, 1, 2);
+    addEdge(adj, 2, 3);
     printGraph(adj, V);
     cout<<"BFS traversal of the graph is\n";
-    BFS(adj,0,V);
+    BFS(adj,2,V);
 
 
     

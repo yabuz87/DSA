@@ -1,28 +1,91 @@
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
+#include <queue>
 using namespace std;
-// Adjascency List representation in C++
-// Add edge
-void addEdge(vector<int> adj[], int s, int d) {
-  adj[s].push_back(d);
-  adj[d].push_back(s);
-}
- void printGraph(vector<int> adj[], int V) {
-  for (int d = 0; d < V; ++d) {
-    cout << "\n Vertex "
-       << d << ":";
-    for (int x : adj[d])
-      cout << "-> " << x;
-    cout<<"\n";
-  }
-}
 
-int main() {
-    int V = 5;
-    vector<int> adj[V];
-    addEdge(adj, 0, 1);
-    addEdge(adj, 0, 2);
-    addEdge(adj, 0, 3);
-    addEdge(adj, 1, 2);
-    printGraph(adj, V);
+
+struct graphList
+{
+    int v=0;
+    int e=0;
+    vector<int> *adj;
+
+    graphList(int vertices)
+    {
+        v = vertices;
+        adj = new vector<int>[v];
+    }
+    void addEdge(int a,int b)
+    {
+       if(a<v && b<v)
+       {
+           adj[a].push_back(b);
+           adj[b].push_back(a);
+           e+=1;
+       }
+       else
+       {
+           cout<<"Invalid edge\n";
+       }
+    }
+    void display()
+    {
+        cout<<"adjacency list of the graph\n";
+        for(int i=0;i<v;i++)
+        {
+            cout<<"\n "<<i<<" -> ";
+            for(int i:adj[i])
+            {
+                cout<<i<<", ";
+            }
+        }
+    }
+    int get_edge()
+    {
+        return e;
+    }
+    void BFSTraversal(int root)
+    {
+        bool visited[v];
+        for(int i=0;i<v;i++)
+        {
+            visited[i]=false;
+        }
+        queue<int> q;
+        visited[root]=true;
+        q.push(root);
+        while(!q.empty())
+        {
+            int u=q.front();
+            q.pop();
+            cout<<u<<" ";
+            for(int i:adj[u])
+            {
+                if(!visited[i])
+                {
+                    q.push(i);
+                    visited[i]=true;
+                }
+            }
+        }
+
+    }
+
+};
+int main()
+{
+    graphList  p(8);
+    p.addEdge(0,2);
+    p.addEdge(1,3);
+    p.addEdge(1,2);
+    p.addEdge(3,2);
+    p.addEdge(3,4);
+    p.addEdge(4,5);
+    p.addEdge(4,6);
+    p.addEdge(4,7);    
+    p.display();
+    cout<<"\n";
+    p.BFSTraversal(0);
+    
+    cout<<"\n"<<p.get_edge();
 }

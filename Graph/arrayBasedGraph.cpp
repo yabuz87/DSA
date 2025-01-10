@@ -20,6 +20,13 @@ struct Graph {
         }
     }
 
+  // Destructor to clean up memory
+    ~Graph() {
+        for(int i = 0; i < v; ++i) {
+            delete[] adjMatrix[i];
+        }
+        delete[] adjMatrix;
+    }
     // Function to add an edge
     void addEdge(int a, int b) {
         if (a < v && b < v) {
@@ -45,13 +52,7 @@ struct Graph {
    cout<<"  _ _ _ _ _ _ \n";
    }
 
-    // Destructor to clean up memory
-    ~Graph() {
-        for(int i = 0; i < v; ++i) {
-            delete[] adjMatrix[i];
-        }
-        delete[] adjMatrix;
-    }
+  
    
 };
 
