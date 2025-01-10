@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<queue>
 using namespace std;
 // Adjascency List representation in C++
 // Add edge
@@ -16,6 +17,31 @@ void addEdge(vector<int> adj[], int s, int d) {
     cout<<"\n";
   }
 }
+ void BFS(vector<int> adj[],int s,int V)
+{
+    bool visited[V];
+    for(int i=0;i<V;i++)
+    {
+        visited[i]=false;
+    }
+    queue<int> q;
+    visited[s]=true;
+    q.push(s);
+    while(!q.empty())
+    {
+        int u=q.front();
+        q.pop();
+        cout<<u<<" ";
+        for(int v:adj[u])
+        {
+            if(visited[v]==false)
+            {
+                visited[v]=true;
+                q.push(v);
+            }
+        }
+    }
+}
 int main() {
     int V = 5;
     vector<int> adj[V];
@@ -24,24 +50,9 @@ int main() {
     addEdge(adj, 0, 3);
     addEdge(adj, 1, 2);
     printGraph(adj, V);
+    cout<<"BFS traversal of the graph is\n";
+    BFS(adj,0,V);
 
 
-    int visited[V];
-    for(int i = 0; i < V; i++) {
-        visited[i] = 0;
-    }
-    vector<int> queue;  // Create a queue for BFS
-    visited[0] = 1;
-    queue.push_back(0);
-    while (!queue.empty()) {
-        int s = queue.front();
-        cout << s << " ";
-        queue.erase(queue.begin());
-        for (int i = 0; i < adj[s].size(); i++) {
-            if (visited[adj[s][i]] == 0) {
-                visited[adj[s][i]] = 1;
-                queue.push_back(adj[s][i]);
-            }
-        }
-        }
+    
 }
