@@ -57,7 +57,7 @@ int main()
      g.addEdge(0,2);
      g.addEdge(1,3);
      g.addEdge(1,2);
-     g.addEdge(3,2);
+     g.addEdge(3,2);t
      g.addEdge(3,4);
      g.addEdge(4,5);
      g.addEdge(4,6);
