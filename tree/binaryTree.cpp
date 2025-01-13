@@ -110,6 +110,35 @@ void pre_order_traverse() {
         }
     }
 }
+void preOrderTraversal(node* root)
+{
+    if(root==nullptr)
+    return;
+    cout<<root->data<<" ";
+    preOrderTraversal(root->left);
+    
+    preOrderTraversal(root->right);
+}
+void inOrderTraversal(node* root)
+{
+    if(root==nullptr)
+    {
+        return;
+    }
+    inOrderTraversal(root->left);
+    cout<<root->data<<" ";
+    inOrderTraversal(root->right);
+}
+void post_order_traversal(node* root)
+{
+    if(root==nullptr)
+    {
+        return;
+    }
+    post_order_traversal(root->left);
+    post_order_traversal(root->right);
+    cout<<root->data<<" ";
+}
 
 int main()
 {
@@ -120,4 +149,11 @@ int main()
     insert(6);
     insert(-7);
     pre_order_traverse();
+    cout<<"\n this one is in recursion\n";
+    
+    preOrderTraversal(root);
+    cout<<"\n in-order-traversal\n";
+    inOrderTraversal(root);
+    cout<<"\n post order traversal\n";
+    post_order_traversal(root);
 }
