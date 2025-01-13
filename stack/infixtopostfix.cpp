@@ -109,6 +109,8 @@ struct stack {
 int main() {
     stack s;
     char* np = s.postfixToinfix("a*(o+h)+b*(c+d)");
+    //aoh+*b+cd+*
+    //a*(o+h)+b*(c+d)
     cout << np << endl;
     delete[] np;  // Free the allocated memory
     return 0;

@@ -24,8 +24,7 @@ struct Stack {
             cout << "Stack Underflow\n";
             return '\0';
         } else {
-            pointer--;
-            return num[pointer];
+            return num[--pointer];
         }
     }
 
