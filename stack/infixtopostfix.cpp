@@ -30,9 +30,9 @@ struct stack {
         if (top <= -1) {
             cout << "stack underflow" << endl;
             return '0';  // Indicates stack underflow
-        }
+                       }
         return ch[top--];  // Corrected sequence: Decrement top after returning the value
-    }
+               }
 
     char peak() {
         if (top >= 0) {
