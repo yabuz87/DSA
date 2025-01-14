@@ -27,7 +27,7 @@ struct queue{
     {
             if(front==-1&& front==-1)
             {
-                cout<<"underflow\n";
+                cout<<"queue underflow\n";
                 return -1;
             }
             else if(front==rear)
