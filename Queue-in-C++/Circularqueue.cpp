@@ -62,7 +62,7 @@ struct queue{
             cout<<num[i]<<"<-";
         }
     }
-    int peak()
+    int peek()
     {
         if(front==-1)
         {

@@ -14,24 +14,12 @@ struct stack {
         ch[++top] = val;
     }
 
-    void display() {
-        if (top == -1) {  // Use -1 to check if stack is empty
-            cout << "Stack is empty" << endl;
-        } else {
-            cout << "|---|" << endl;
-            for (int i = top; i >= 0; i--) {
-                cout << "| " << ch[i] << " |" << endl;
-            }
-            cout << "|___|" << endl;
-        }
-    }
-
     char pop() {
         if (top <= -1) {
             cout << "stack underflow" << endl;
             return '0';  // Indicates stack underflow
         }
-        return ch[top--];  // Corrected sequence: Decrement top after returning the value
+        return ch[top--];
     }
 
     char peak() {
@@ -56,42 +44,33 @@ struct stack {
         return 0;
     }
 
-    char* postfixToinfix(string str) {
+    char* infixToPostfix(string str) {
         int n = str.length();
         char* arr = new char[n + 1];  // Ensure enough space and null-terminated
         int count = 0;
         int i = 0;
 
         while (i < n) {
-            if (isalpha(str[i])|| isdigit(str[i])) {
-                cout << str[i] << endl;
+            if (isalpha(str[i]) || isdigit(str[i])) {
                 arr[count++] = str[i];
                 i++;
-                continue;
             } else if (str[i] == '(') {
                 push(str[i]);
-                display();
                 i++;
-                continue;
             } else if (str[i] == ')') {
                 while (peak() != '(') {
                     arr[count++] = pop();
                 }
                 pop();  // Pop the '(' from the stack
-                display();
                 i++;
-                continue;
             } else if (str[i] == '^') {
                 push(str[i]);
-                display();
                 i++;
-                continue;
             } else {
                 while (top != -1 && precedence(peak()) >= precedence(str[i])) {
                     arr[count++] = pop();
                 }
                 push(str[i]);
-                display();
                 i++;
             }
         }
@@ -108,7 +87,7 @@ struct stack {
 
 int main() {
     stack s;
-    char* np = s.postfixToinfix("a*(o+h)+b*(c+d)");
+    char* np = s.infixToPostfix("(4*((2-1)*(3*4))+10)");  // Corrected function call
     cout << np << endl;
     delete[] np;  // Free the allocated memory
     return 0;

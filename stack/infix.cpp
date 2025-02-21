@@ -9,29 +9,27 @@ struct Stack {
     char num[length];
     int pointer;
 
-    Stack() : pointer(0) {} // Constructor to initialize pointer
+    Stack() : pointer(-1) {} // Constructor to initialize pointer
 
     void push(char val) {
         if (pointer == length) {
             cout << "Stack Overflow\n\n";
         } else {
-            num[pointer] = val;
-            pointer++;
+            num[++pointer] = val;
         }
     }
 
     char pop() {
-        if (pointer == 0) {
+        if (pointer == -1) {
             cout << "Stack Underflow\n";
             return '\0';
         } else {
-            pointer--;
-            return num[pointer];
+            return num[--pointer];
         }
     }
 
     char peek() {
-        if (pointer == 0) {
+        if (pointer == -1) {
             cout << "Stack is empty\n";
             return '\0';
         } else {
@@ -40,7 +38,7 @@ struct Stack {
     }
 
     bool isEmpty() {
-        return pointer == 0;
+        return pointer == -1;
     }
 };
 
