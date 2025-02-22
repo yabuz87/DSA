@@ -315,10 +315,6 @@ void binaryInsertion(int num[],int n)
         }
         num[j+1]=current;
 
-
-
-
-
     }
 
 
