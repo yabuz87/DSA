@@ -35,7 +35,77 @@ void insert(int val, node*& root) {
         }
     }
 }
+void insert(node* root,int a)
+{
+    node* newNode = new node(a);
+    if(root==nullptr)
+    {
+        root=newNode;   
+    }
+    else if(root->data>a && root->left==nullptr)
+    {
+        root->left=newNode;
+    }
+    else if(root->data<a && root->right==nullptr)
+    {
+        root->right=newNode;
+    }
+    else if(root->data>a)
+    {
+        insert(root->left,a);
+    }
+    else{
+        insert(root->right,a);
+    }
+}
+bool search(node* root,int a)
+{
+    if(root->data==a)
+    {
+        return true;
+    }
+    else if(root==null)
+    {
+        return false;
+    }
+    else if(root->data>a)
+    {
+        search(root->left,a);
+    }
+    else if(root->data<a)
+    {
+        search(root->right,a);
+    }
+}
+node* search(node* root, int a)
+{
+    if(root==null || root->data==a)
+    {
+        return root;
+    }
+    else if(root->data>a)
+    {
+        search(root->left,a)
+    }
+    else{
+        search(root->right,a);
+    }
+}
 
+int findMin(node* root)
+{
+    int min;
+    if(root==nullptr)
+    {
+        return min;
+    }
+    else{
+        min=root->data;
+        findMin(root->left);
+    }
+
+    
+}
 void preOrder(node* root) {
     if (root == nullptr) {
         return;

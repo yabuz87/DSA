@@ -128,6 +128,7 @@ void inOrderTraversal(node* root)
     inOrderTraversal(root->left);
     cout<<root->data<<" ";
     inOrderTraversal(root->right);
+    cout<<" "<<root->data<<" ";
 }
 void post_order_traversal(node* root)
 {
@@ -145,15 +146,16 @@ int main()
     
     insert(5);
     insert(2);
-    insert(5);
+    insert(8);
     insert(6);
+    insert(3);
     insert(-7);
-    pre_order_traverse();
-    cout<<"\n this one is in recursion\n";
+    // pre_order_traverse();
+    // cout<<"\n this one is in recursion\n";
     
-    preOrderTraversal(root);
+    // preOrderTraversal(root);
     cout<<"\n in-order-traversal\n";
     inOrderTraversal(root);
-    cout<<"\n post order traversal\n";
-    post_order_traversal(root);
+    // cout<<"\n post order traversal\n";
+    // post_order_traversal(root);
 }
